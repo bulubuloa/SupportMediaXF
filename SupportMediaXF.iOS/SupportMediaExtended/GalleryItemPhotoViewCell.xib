@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cZE-iV-UFb" customClass="GalleryItemPhotoViewCell" reuseIdentifier="GalleryItemPhotoViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="492" height="482"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="492" height="482"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" id="188" translatesAutoresizingMaskIntoConstraints="NO">
+                        <rect key="frame" x="0.0" y="0.0" width="492" height="482"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="218" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="0.0" width="492" height="482"/>
+                                <constraints>
+                                    <constraint id="219" firstAttribute="width" secondItem="218" secondAttribute="height" multiplier="1:1"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="246" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="0.0" width="492" height="482"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="295" customClass="SupportRadioCheckiOS" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="446" y="0.0" width="46" height="46"/>
+                                <constraints>
+                                    <constraint id="296" firstAttribute="width" secondItem="295" secondAttribute="height" multiplier="1:1"/>
+                                    <constraint id="297" firstAttribute="height" constant="46"/>
+                                </constraints>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint id="220" firstItem="218" firstAttribute="top" secondItem="188" secondAttribute="top"/>
+                            <constraint id="221" firstAttribute="trailing" secondItem="218" secondAttribute="trailing"/>
+                            <constraint id="222" firstAttribute="bottom" secondItem="218" secondAttribute="bottom"/>
+                            <constraint id="223" firstItem="218" firstAttribute="leading" secondItem="188" secondAttribute="leading"/>
+                            <constraint id="259" firstItem="246" firstAttribute="top" secondItem="218" secondAttribute="top"/>
+                            <constraint id="260" firstItem="218" firstAttribute="trailing" secondItem="246" secondAttribute="trailing"/>
+                            <constraint id="261" firstItem="218" firstAttribute="bottom" secondItem="246" secondAttribute="bottom"/>
+                            <constraint id="262" firstItem="246" firstAttribute="leading" secondItem="218" secondAttribute="leading"/>
+                            <constraint id="317" firstItem="295" firstAttribute="top" secondItem="246" secondAttribute="top"/>
+                            <constraint id="318" firstItem="246" firstAttribute="trailing" secondItem="295" secondAttribute="trailing"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint id="189" firstItem="188" firstAttribute="top" secondItem="cZE-iV-UFb" secondAttribute="top"/>
+                <constraint id="190" firstItem="188" firstAttribute="leading" secondItem="cZE-iV-UFb" secondAttribute="leading"/>
+                <constraint id="191" firstAttribute="trailing" secondItem="188" secondAttribute="trailing"/>
+                <constraint id="192" firstAttribute="bottom" secondItem="188" secondAttribute="bottom"/>
+            </constraints>
+            <connections>
+                <outlet property="ViewMain" destination="188" id="name-outlet-188"/>
+                <outlet property="imgIcon" destination="218" id="name-outlet-218"/>
+                <outlet property="bttClick" destination="246" id="name-outlet-246"/>
+                <outlet property="CheckBox" destination="295" id="name-outlet-295"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+</document>

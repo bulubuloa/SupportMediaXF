@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+
+    <TextureView android:id="@+id/texture_view"
+                 android:layout_height="match_parent"
+                 android:layout_width="match_parent" />
+
+    <ImageButton android:layout_alignParentBottom="true"
+                 android:layout_centerHorizontal="true"
+                 android:id="@+id/bttCapture"
+                 android:layout_height="60dp"
+                 android:layout_width="60dp" />
+
+    <RelativeLayout android:background="?android:attr/colorAccent"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:padding="7dp">
+        <ImageButton android:layout_centerVertical="true"
+                     android:layout_height="40dp"
+                     android:layout_width="40dp"
+                     android:src="@drawable/arrow_left" />
+        <ImageButton android:id="@+id/bttSwitchCamera"
+                     android:layout_alignParentRight="true"
+                     android:layout_centerVertical="true"
+                     android:layout_height="40dp"
+                     android:layout_width="40dp"
+                     android:src="@drawable/switch_camera" />
+        <ImageButton android:layout_alignLeft="@+id/bttSwitchCamera"
+                     android:layout_centerVertical="true"
+                     android:layout_height="40dp"
+                     android:layout_marginRight="10dp"
+                     android:layout_width="40dp"
+                     android:src="@drawable/arrow_left" />
+    </RelativeLayout>
+
+</RelativeLayout>    
