@@ -6,6 +6,8 @@ using Android.Content;
 using Android.Graphics;
 using SupportMediaXF.DependencyServices;
 using SupportMediaXF.Droid.SupportMediaExtended;
+using SupportMediaXF.Droid.SupportMediaExtended.Camera;
+using SupportMediaXF.Droid.SupportMediaExtended.Capture;
 using SupportMediaXF.Interfaces;
 using SupportMediaXF.Models;
 using Xamarin.Forms;
@@ -30,7 +32,7 @@ namespace SupportMediaXF.Droid.SupportMediaExtended
             CodeRequest = _CodeRequest;
             supportMediaResultListener = _supportMediaResultListener;
 
-            var pickerIntent = new Intent(SupportMediaXFSetup.Activity, typeof(GalleryPickerActivity));
+            var pickerIntent = new Intent(SupportMediaXFSetup.Activity, typeof(CamActivity));
             pickerIntent.PutExtra(Utils.SubscribeImageFromCamera, Utils.SubscribeImageFromCamera);
             SupportMediaXFSetup.Activity.StartActivity(pickerIntent);
         }

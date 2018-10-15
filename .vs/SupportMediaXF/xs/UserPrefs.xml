@@ -1,35 +1,40 @@
 ﻿<Properties StartupConfiguration="{4C1E50F8-36D6-4435-B270-CBB7AF05139C}|Default">
   <MonoDevelop.Ide.ItemProperties.SupportMediaXF.Droid AndroidDesignerPreferredDevice="Nexus 4" />
   <MonoDevelop.Ide.Workbench>
+    <Files>
+      <File FileName="SupportMediaXF.Droid/SupportMediaExtended/Camera/CamActivity.cs" Line="158" Column="13" />
+      <File FileName="SupportMediaXF.Droid/SupportMediaExtended/Camera/CameraStateListener.cs" Line="24" Column="41" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SupportMediaXF" expanded="True">
-            <Node name="DemoAPP" expanded="True" />
-            <Node name="SupportMediaXF" expanded="True">
-              <Node name="Models" expanded="True" />
+            <Node name="DemoAPP" expanded="True">
+              <Node name="SupportMediaXFDemo.Android" expanded="True">
+                <Node name="Properties" expanded="True" />
+              </Node>
             </Node>
             <Node name="SupportMediaXF.Droid" expanded="True">
               <Node name="Resources" expanded="True">
-                <Node name="layout" expanded="True" />
+                <Node name="drawable-xhdpi" expanded="True" />
+                <Node name="layout" expanded="True">
+                  <Node name="cam_activity.axml" selected="True" />
+                </Node>
+                <Node name="values" expanded="True" />
               </Node>
               <Node name="SupportMediaExtended" expanded="True">
-                <Node name="GalleryDirectoryNewAdapter.cs" selected="True" />
+                <Node name="Camera" expanded="True" />
               </Node>
             </Node>
-            <Node name="SupportMediaXF.iOS" expanded="True" />
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.DemoAPP.SupportMediaXFDemo.Android PreferredExecutionTarget="Android.RBDBB18307156946" />
+  <MonoDevelop.Ide.ItemProperties.DemoAPP.SupportMediaXFDemo.Android PreferredExecutionTarget="Android.E5AZCY489464" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/QuachHoang/Projects/SupportMediaXF/SupportMediaXF.Droid/SupportMediaExtended/CameraPreview.cs" relfile="SupportMediaXF.Droid/SupportMediaExtended/CameraPreview.cs" line="83" column="1" />
-      <Breakpoint file="/Users/QuachHoang/Projects/SupportMediaXF/SupportMediaXF.Droid/SupportMediaExtended/CameraPreview.cs" relfile="SupportMediaXF.Droid/SupportMediaExtended/CameraPreview.cs" line="84" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.DemoAPP.SupportMediaXFDemo.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.3E1706BF-323D-427B-A7B0-D4465227F3F9" automaticSigning="False" />

@@ -4,36 +4,42 @@
                 android:layout_width="match_parent"
                 android:orientation="vertical">
 
-    <TextureView android:id="@+id/texture_view"
+    <TextureView android:id="@+id/texture"
+                 android:layout_above="@+id/btn_takepicture"
+                 android:layout_alignParentTop="true"
                  android:layout_height="match_parent"
                  android:layout_width="match_parent" />
 
-    <ImageButton android:layout_alignParentBottom="true"
+    <ImageButton android:id="@+id/bttCapture"
+                 android:background="@android:color/transparent"
+                 android:layout_alignParentBottom="true"
                  android:layout_centerHorizontal="true"
-                 android:id="@+id/bttCapture"
                  android:layout_height="60dp"
                  android:layout_width="60dp" />
 
-    <RelativeLayout android:background="?android:attr/colorAccent"
+    <RelativeLayout android:background="#B3404040"
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:padding="7dp">
-        <ImageButton android:layout_centerVertical="true"
+        <ImageButton android:background="@android:color/transparent"
+                     android:layout_centerVertical="true"
                      android:layout_height="40dp"
                      android:layout_width="40dp"
                      android:src="@drawable/arrow_left" />
-        <ImageButton android:id="@+id/bttSwitchCamera"
+        <ImageButton android:background="@android:color/transparent"
+                     android:id="@+id/bttSwitchCamera"
                      android:layout_alignParentRight="true"
                      android:layout_centerVertical="true"
                      android:layout_height="40dp"
                      android:layout_width="40dp"
                      android:src="@drawable/switch_camera" />
-        <ImageButton android:layout_alignLeft="@+id/bttSwitchCamera"
+        <ImageButton android:background="@android:color/transparent"
                      android:layout_centerVertical="true"
                      android:layout_height="40dp"
                      android:layout_marginRight="10dp"
+                     android:layout_toLeftOf="@+id/bttSwitchCamera"
                      android:layout_width="40dp"
+                     android:id="@+id/flash"
                      android:src="@drawable/arrow_left" />
     </RelativeLayout>
-
 </RelativeLayout>    

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+
+    <SupportMediaXF.Droid.SupportMediaExtended.Camera.AutoFitTextureView android:id="@+id/CameraTexture"
+                                                                         android:layout_alignParentStart="true"
+                                                                         android:layout_alignParentTop="true"
+                                                                         android:layout_height="wrap_content"
+                                                                         android:layout_width="wrap_content" />
+    <ImageButton android:background="@android:color/transparent"
+                 android:id="@+id/bttCapture"
+                 android:layout_alignParentBottom="true"
+                 android:layout_centerHorizontal="true"
+                 android:layout_height="60dp"
+                 android:layout_width="60dp"
+                 android:src="@drawable/capture_camera" />
+     <ProgressBar
+        android:layout_weight="1"
+        android:id="@+id/progressBar_cyclic"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="40dp"
+        android:minWidth="40dp" />
+    
+    <RelativeLayout android:background="#B3404040"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:padding="7dp">
+
+        <ImageButton android:background="@android:color/transparent"
+                     android:layout_centerVertical="true"
+                     android:id="@+id/bttBack"
+                     android:layout_height="40dp"
+                     android:layout_width="40dp"
+                     android:src="@drawable/arrow_left" />
+        <ImageButton android:background="@android:color/transparent"
+                     android:id="@+id/bttSwitchCamera"
+                     android:layout_alignParentRight="true"
+                     android:layout_centerVertical="true"
+                     android:layout_height="40dp"
+                     android:layout_width="40dp"
+                     android:src="@drawable/switch_camera" />
+        <ImageButton android:background="@android:color/transparent"
+                     android:layout_centerVertical="true"
+                     android:layout_height="40dp"
+                     android:layout_marginRight="10dp"
+                      android:id="@+id/bttFlash"
+                     android:layout_toLeftOf="@+id/bttSwitchCamera"
+                     android:layout_width="40dp"
+                     android:src="@drawable/flash_off" />
+    </RelativeLayout>
+
+</RelativeLayout>
