@@ -59,12 +59,10 @@ Simple cross platform plugin to take photos or pick them from a gallery from sha
     }
 
 ## SCREENSHOTS
-Android
-![alt tag](https://github.com/bulubuloa/SupportMediaXF/blob/master/Screenshots/Screenshot_2018-10-19-16-30-21.jpg?raw=true)
-![alt tag](https://github.com/bulubuloa/SupportMediaXF/blob/master/Screenshots/Screenshot_2018-10-19-16-30-26.jpg?raw=true)
-![alt tag](https://github.com/bulubuloa/SupportMediaXF/blob/master/Screenshots/Screenshot_2018-10-19-16-31-18.jpg?raw=true)
+<img src="https://github.com/bulubuloa/SupportMediaXF/blob/master/Screenshots/Screenshot_2018-10-19-16-30-21.jpg?raw=true" width="300">
+<img src="https://github.com/bulubuloa/SupportMediaXF/blob/master/Screenshots/Screenshot_2018-10-19-16-30-26.jpg?raw=true" width="300">
+<img src="https://github.com/bulubuloa/SupportMediaXF/blob/master/Screenshots/Screenshot_2018-10-19-16-31-18.jpg?raw=true" width="300">
 
-iOS
-![alt tag](https://github.com/bulubuloa/SupportMediaXF/blob/master/Screenshots/IMG_2918.PNG?raw=true)
-![alt tag](https://github.com/bulubuloa/SupportMediaXF/blob/master/Screenshots/IMG_2919.PNG?raw=true)
-![alt tag](https://github.com/bulubuloa/SupportMediaXF/blob/master/Screenshots/IMG_2920.PNG?raw=true)
+<img src="https://github.com/bulubuloa/SupportMediaXF/blob/master/Screenshots/IMG_2918.PNG?raw=true" width="300">
+<img src="https://github.com/bulubuloa/SupportMediaXF/blob/master/Screenshots/IMG_2919.PNG?raw=true" width="300">
+<img src="https://github.com/bulubuloa/SupportMediaXF/blob/master/Screenshots/IMG_2920.PNG?raw=true" width="300">
