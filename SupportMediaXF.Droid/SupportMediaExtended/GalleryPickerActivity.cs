@@ -34,7 +34,7 @@ namespace SupportMediaXF.Droid.SupportMediaExtended
         private GalleryImageAdapter galleryImageAdapter;
 
         private Android.Widget.Button buttonSpinner;
-        private GalleryDirectoryAdapter galleryDirectoryAdapter;
+        //private GalleryDirectoryAdapter galleryDirectoryAdapter;
 
         private Android.Widget.Button bttDone;
         private ImageButton bttBack;
@@ -63,7 +63,7 @@ namespace SupportMediaXF.Droid.SupportMediaExtended
             bttBack = (Android.Widget.ImageButton)FindViewById(Resource.Id.bttBack);
             bttDone = (Android.Widget.Button)FindViewById(Resource.Id.bttDone);
 
-            galleryDirectoryAdapter = new GalleryDirectoryAdapter(this, galleryDirectories);
+            //galleryDirectoryAdapter = new GalleryDirectoryAdapter(this, galleryDirectories);
 
             buttonSpinner.Click += ButtonSpinner_Click;
             //spinner.Adapter = galleryDirectoryAdapter;
@@ -300,7 +300,7 @@ namespace SupportMediaXF.Droid.SupportMediaExtended
 
             galleryDirectories.AddRange(galleriesRaw.Where(obj => obj.Images.Count > 0).OrderBy(obj => obj.Name));
             galleryDirectories.ForEach(obj => obj.Images.Insert(0, new SupportImageXF()));
-            galleryDirectoryAdapter.NotifyDataSetChanged();
+            //galleryDirectoryAdapter.NotifyDataSetChanged();
 
             SyncGalleryItem(0);
 

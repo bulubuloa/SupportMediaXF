@@ -7,7 +7,6 @@ using Android.Graphics;
 using SupportMediaXF.DependencyServices;
 using SupportMediaXF.Droid.SupportMediaExtended;
 using SupportMediaXF.Droid.SupportMediaExtended.Camera;
-using SupportMediaXF.Droid.SupportMediaExtended.Capture;
 using SupportMediaXF.Interfaces;
 using SupportMediaXF.Models;
 using Xamarin.Forms;
@@ -23,6 +22,9 @@ namespace SupportMediaXF.Droid.SupportMediaExtended
         public ISupportMediaExtended()
         {
             MessagingCenter.Subscribe<GalleryPickerActivity, List<SupportImageXF>>(this, Utils.SubscribeImageFromGallery, (arg1, arg2) => {
+                supportMediaResultListener.IF_PickedResult(arg2, CodeRequest);
+            });
+            MessagingCenter.Subscribe<CamActivity, List<SupportImageXF>>(this, Utils.SubscribeImageFromCamera, (arg1, arg2) => {
                 supportMediaResultListener.IF_PickedResult(arg2, CodeRequest);
             });
         }

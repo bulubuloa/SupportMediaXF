@@ -1,20 +1,25 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.Hardware.Camera2;
 using Android.Hardware.Camera2.Params;
+using Android.Icu.Text;
 using Android.Media;
 using Android.OS;
 using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using Java.IO;
 using Java.Lang;
-using Java.Util.Concurrent;
+using SupportMediaXF.Models;
+using Xamarin.Forms;
 
 namespace SupportMediaXF.Droid.SupportMediaExtended.Camera
 {
@@ -22,7 +27,7 @@ namespace SupportMediaXF.Droid.SupportMediaExtended.Camera
     public class CamActivity : Activity, TextureView.ISurfaceTextureListener
     {
         private ImageButton bttCapture, bttBack, bttSwitch, bttFlash;
-        private ProgressBar progressBar;
+        private Android.Widget.ProgressBar progressBar;
 
         private static readonly SparseIntArray ORIENTATIONS = new SparseIntArray();
         private CameraStateListener cameraStateListener;
@@ -30,21 +35,16 @@ namespace SupportMediaXF.Droid.SupportMediaExtended.Camera
         private CameraCaptureSession cameraCaptureSession;
         private SurfaceTexture surfaceTexture;
         private AutoFitTextureView autoFitTextureView;
-        private Size previewSize;
+        private Android.Util.Size previewSize;
         private CameraManager cameraManager;
         public CameraDevice cameraDevice;
 
-        private bool flashOn = false;
-
-        public Semaphore mCameraOpenCloseLock = new Semaphore(1);
-        public Semaphore SwitchCameraLock = new Semaphore(1);
-
-
-        private bool mFlashSupported;
+        private bool IsBusy = false;
+        private bool FlashOn = false;
+        private bool FlashSupported = true;
         private int CurrentCameraIndex = -1;
         private byte[] Photo;
-
-        private bool IsBusy = false;
+        private string CurrentPhotoPath = "";
 
         private void ShowToastMessage(string message)
         {
@@ -110,6 +110,94 @@ namespace SupportMediaXF.Droid.SupportMediaExtended.Camera
         {
         }
 
+
+        private Java.IO.File CreateImageFile()
+        {
+            // Create an image file name
+            string timeStamp = (DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds+"";
+            string imageFileName = "JPEG_" + timeStamp + "_";
+            Java.IO.File storageDir = GetExternalFilesDir(Android.OS.Environment.DirectoryPictures);
+            Java.IO.File image = Java.IO.File.CreateTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+            );
+
+            // Save a file: path for use with ACTION_VIEW intents
+            CurrentPhotoPath = image.AbsolutePath;
+            return image;
+        }
+
+        private void WriteToFile()
+        {
+            Java.IO.File photoFile = null;
+            try
+            {
+                photoFile = CreateImageFile();
+                if (photoFile != null)
+                {
+                    using (var output = new FileOutputStream(photoFile))
+                    {
+                        try
+                        {
+                            output.Write(Photo);
+                        }
+                        catch (Java.IO.IOException e)
+                        {
+                            e.PrintStackTrace();
+                        }
+                    }
+                }
+            }
+            catch (System.IO.IOException ex)
+            {
+            }
+
+        }
+        private void FinishTakePhoto()
+        {
+            try
+            {
+                WriteToFile();
+
+                Task.Delay(100).ContinueWith((arg) => {
+                    try
+                    {
+                        var item = new SupportImageXF()
+                        {
+                            OriginalPath = CurrentPhotoPath
+                        };
+                        var bitmap = item.OriginalPath.GetOriginalBitmapFromPath(new SyncPhotoOptions()
+                        {
+                            Width = 300,
+                            Height = 300
+                        });
+                        using (var streamBitmap = new MemoryStream())
+                        {
+                            bitmap.Compress(Bitmap.CompressFormat.Jpeg, 80, streamBitmap);
+                            item.ImageSourceXF = ImageSource.FromStream(() => new MemoryStream(streamBitmap.ToArray().ToArray()));
+                            bitmap.Recycle();
+                        }
+
+                        var result = new List<SupportImageXF>() { item };
+                        MessagingCenter.Send<CamActivity, List<SupportImageXF>>(this, Utils.SubscribeImageFromCamera, result);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        DebugMessage("ErrorMessage: \n" + ex.Message + "\n" + "Stacktrace: \n " + ex.StackTrace);
+                    }
+
+                });
+
+                Finish();
+            }
+            catch (System.Exception ex)
+            {
+                ShowToastMessage("Failed to take photo");
+                DebugMessage("ErrorMessage: \n" + ex.Message + "\n" + "Stacktrace: \n " + ex.StackTrace);
+            }
+        }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -124,7 +212,7 @@ namespace SupportMediaXF.Droid.SupportMediaExtended.Camera
             bttFlash = FindViewById<ImageButton>(Resource.Id.bttFlash);
             bttSwitch = FindViewById<ImageButton>(Resource.Id.bttSwitchCamera);
             bttCapture = FindViewById<ImageButton>(Resource.Id.bttCapture);
-            progressBar = FindViewById<ProgressBar>(Resource.Id.progressBar_cyclic);
+            progressBar = FindViewById<Android.Widget.ProgressBar>(Resource.Id.progressBar_cyclic);
 
             bttBack.Click += (object sender, EventArgs e) => {
                 Finish();
@@ -133,9 +221,25 @@ namespace SupportMediaXF.Droid.SupportMediaExtended.Camera
             bttFlash.Click += (object sender, EventArgs e) => {
                 try
                 {
-                    flashOn = !flashOn;
-                    captureRequestBuilder.Set(CaptureRequest.FlashMode, new Integer(flashOn ? (int)FlashMode.Torch : (int)FlashMode.Off));
-                    UpdatePreview();
+                    if(FlashSupported)
+                    {
+                        FlashOn = !FlashOn;
+                        if (FlashOn)
+                        {
+                            bttFlash.SetImageResource(Resource.Drawable.flash_on);
+                            captureRequestBuilder.Set(CaptureRequest.FlashMode, (int)FlashMode.Torch);
+                        }
+                        else
+                        {
+                            bttFlash.SetImageResource(Resource.Drawable.flash_off);
+                            captureRequestBuilder.Set(CaptureRequest.FlashMode, (int)FlashMode.Off);
+                        }
+                        UpdatePreview();
+                    }
+                    else
+                    {
+                        ShowToastMessage("Your camera not support flash!");
+                    }
                 }
                 catch (System.Exception error)
                 {
@@ -145,10 +249,18 @@ namespace SupportMediaXF.Droid.SupportMediaExtended.Camera
             };
 
             bttSwitch.Click += (object sender, EventArgs e) => {
+                if (IsBusy)
+                    return;
+                else
+                    IsBusy = true;
                  SwitchCamera();
             };
 
             bttCapture.Click += (object sender, EventArgs e) => {
+                if (IsBusy)
+                    return;
+                else
+                    IsBusy = true;
                 TakePhoto();
             };
 
@@ -161,38 +273,31 @@ namespace SupportMediaXF.Droid.SupportMediaExtended.Camera
             ORIENTATIONS.Append((int)SurfaceOrientation.Rotation270, 180);
 
             OpenCamera(false);
-
-            //Task.Delay(500).ContinueWith((arg) =>
-            //{
-            //    RunOnUiThread(() =>
-            //    {
-
-            //    });
-            //});
-
         }
 
         private void SwitchCamera()
         {
             try
             {
-                SwitchCameraLock.Acquire();
-
+                DebugMessage("SwitchCamera");
                 progressBar.Visibility = ViewStates.Visible;
 
                 CloseCamera();
                 OpenCamera(true);
 
                 progressBar.Visibility = ViewStates.Gone;
+                bttSwitch.Enabled = true;
+
+                Task.Delay(2000).ContinueWith((arg) =>
+                {
+                    IsBusy = false;
+                });
+               
             }
             catch (System.Exception ex)
             {
                 ShowToastMessage("Failed to switch camera");
                 DebugMessage("ErrorMessage: \n" + ex.Message + "\n" + "Stacktrace: \n " + ex.StackTrace);
-            }
-            finally
-            {
-                SwitchCameraLock.Release();
             }
         }
 
@@ -200,7 +305,6 @@ namespace SupportMediaXF.Droid.SupportMediaExtended.Camera
         {
             try
             {
-                mCameraOpenCloseLock.Acquire();
                 if (null != cameraCaptureSession)
                 {
                     cameraCaptureSession.Close();
@@ -216,10 +320,6 @@ namespace SupportMediaXF.Droid.SupportMediaExtended.Camera
             {
                 ShowToastMessage("Failed to close camera");
                 DebugMessage("ErrorMessage: \n" + e.Message + "\n" + "Stacktrace: \n " + e.StackTrace);
-            }
-            finally
-            {
-                mCameraOpenCloseLock.Release();
             }
         }
 
@@ -321,11 +421,11 @@ namespace SupportMediaXF.Droid.SupportMediaExtended.Camera
                 var available = (bool)characteristics.Get(CameraCharacteristics.FlashInfoAvailable);
                 if (available)
                 {
-                    mFlashSupported = false;
+                    FlashSupported = true;
                 }
                 else
                 {
-                    mFlashSupported = (bool)available;
+                    FlashSupported = false;
                 }
 
             }
@@ -417,6 +517,7 @@ namespace SupportMediaXF.Droid.SupportMediaExtended.Camera
                     readerListener.Photo += (sender, e) =>
                     {
                         Photo = e;
+                        FinishTakePhoto();
                     };
 
                     // We create a Handler since we want to handle the resulting JPEG in a background thread

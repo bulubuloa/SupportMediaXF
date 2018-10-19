@@ -132,25 +132,11 @@
     <Compile Include="SupportMediaExtended\ISupportMediaExtended.cs" />
     <Compile Include="SupportMediaExtended\SupportMediaXFSetup.cs" />
     <Compile Include="SupportMediaExtended\GalleryDirectoryNewAdapter.cs" />
-    <Compile Include="SupportMediaExtended\Capture\CaptureImageActivity.cs" />
-    <Compile Include="SupportMediaExtended\Capture\Camera2BasicFragment.cs" />
-    <Compile Include="SupportMediaExtended\Capture\Camera2BasicSurfaceTextureListener.cs" />
-    <Compile Include="SupportMediaExtended\Capture\CameraCaptureListener.cs" />
-    <Compile Include="SupportMediaExtended\Capture\CameraCaptureSessionCallback.cs" />
-    <Compile Include="SupportMediaExtended\Capture\CameraCaptureStillPictureSessionCallback.cs" />
-    <Compile Include="SupportMediaExtended\Capture\CameraStateListener.cs" />
-    <Compile Include="SupportMediaExtended\Capture\ImageAvailableListener.cs" />
-    <Compile Include="SupportMediaExtended\Capture\AutoFitTextureView.cs" />
-    <Compile Include="SupportMediaExtended\Capture\CompareSizesByArea.cs" />
-    <Compile Include="SupportMediaExtended\Capture\ConfirmationDialog.cs" />
-    <Compile Include="SupportMediaExtended\Capture\ErrorDialog.cs" />
-    <Compile Include="SupportMediaExtended\Capture\CaptureImage2Activity.cs" />
     <Compile Include="SupportMediaExtended\Camera\AutoFitTextureView.cs" />
     <Compile Include="SupportMediaExtended\Camera\CameraCaptureListener.cs" />
     <Compile Include="SupportMediaExtended\Camera\CameraCaptureStateListener.cs" />
     <Compile Include="SupportMediaExtended\Camera\CameraStateListener.cs" />
     <Compile Include="SupportMediaExtended\Camera\ImageAvailableListener.cs" />
-    <Compile Include="SupportMediaExtended\Camera\CameraDroid.cs" />
     <Compile Include="SupportMediaExtended\Camera\CamActivity.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -173,23 +159,18 @@
     <AndroidResource Include="Resources\values\colors.xml" />
     <AndroidResource Include="Resources\layout\activity_gallery_picker.axml" />
     <AndroidResource Include="Resources\drawable\background_button.axml" />
-    <AndroidResource Include="Resources\layout\activity_camera_capture.axml" />
     <AndroidResource Include="Resources\drawable-xhdpi\switch_camera.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\flash_on.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\flash_off.png" />
     <AndroidResource Include="Resources\layout\layout_directory.axml" />
     <AndroidResource Include="Resources\layout\dialog_directories.axml" />
-    <AndroidResource Include="Resources\layout\fragment_camera2_basic.axml" />
-    <AndroidResource Include="Resources\layout\activity_camera.axml" />
     <AndroidResource Include="Resources\drawable-xhdpi\capture_camera.png" />
-    <AndroidResource Include="Resources\layout\CameraLayout.axml" />
     <AndroidResource Include="Resources\layout\cam_activity.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SupportMediaExtended\" />
     <Folder Include="Resources\layout\" />
     <Folder Include="Resources\drawable\" />
-    <Folder Include="SupportMediaExtended\Capture\" />
     <Folder Include="SupportMediaExtended\Camera\" />
   </ItemGroup>
   <ItemGroup>
