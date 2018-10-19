@@ -59,10 +59,15 @@ Simple cross platform plugin to take photos or pick them from a gallery from sha
     }
 
 ## SCREENSHOTS
-<img src="https://github.com/bulubuloa/SupportMediaXF/blob/master/Screenshots/Screenshot_2018-10-19-16-30-21.jpg?raw=true" width="300">
-<img src="https://github.com/bulubuloa/SupportMediaXF/blob/master/Screenshots/Screenshot_2018-10-19-16-30-26.jpg?raw=true" width="300">
-<img src="https://github.com/bulubuloa/SupportMediaXF/blob/master/Screenshots/Screenshot_2018-10-19-16-31-18.jpg?raw=true" width="300">
-
-<img src="https://github.com/bulubuloa/SupportMediaXF/blob/master/Screenshots/IMG_2918.PNG?raw=true" width="300">
-<img src="https://github.com/bulubuloa/SupportMediaXF/blob/master/Screenshots/IMG_2919.PNG?raw=true" width="300">
-<img src="https://github.com/bulubuloa/SupportMediaXF/blob/master/Screenshots/IMG_2920.PNG?raw=true" width="300">
+<table style="width:100%">
+  <tr>
+    <td><img src="https://github.com/bulubuloa/SupportMediaXF/blob/master/Screenshots/Screenshot_2018-10-19-16-30-21.jpg?raw=true" width="300"></td>
+    <td><img src="https://github.com/bulubuloa/SupportMediaXF/blob/master/Screenshots/Screenshot_2018-10-19-16-30-26.jpg?raw=true" width="300"></td>
+    <td><img src="https://github.com/bulubuloa/SupportMediaXF/blob/master/Screenshots/Screenshot_2018-10-19-16-31-18.jpg?raw=true" width="300"></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/bulubuloa/SupportMediaXF/blob/master/Screenshots/IMG_2918.PNG?raw=true" width="300"></td>
+    <td><img src="https://github.com/bulubuloa/SupportMediaXF/blob/master/Screenshots/IMG_2919.PNG?raw=true" width="300"></td>
+    <td><img src="https://github.com/bulubuloa/SupportMediaXF/blob/master/Screenshots/IMG_2920.PNG?raw=true" width="300"></td>
+  </tr>
+</table>
