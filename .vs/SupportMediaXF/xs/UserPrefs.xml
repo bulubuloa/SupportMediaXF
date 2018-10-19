@@ -1,11 +1,30 @@
 ﻿<Properties StartupConfiguration="{4C1E50F8-36D6-4435-B270-CBB7AF05139C}|Default">
   <MonoDevelop.Ide.ItemProperties.SupportMediaXF.Droid AndroidDesignerPreferredDevice="Nexus 4" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="SupportMediaXF/Models/SyncPhotoOptions.cs">
+    <Files>
+      <File FileName="SupportMediaXFDemo.Android/Properties/AndroidManifest.xml" Line="23" Column="20" />
+      <File FileName="SupportMediaXFDemo.iOS/Info.plist" />
+      <File FileName="SupportMediaXFDemo.Android/MainActivity.cs" Line="23" Column="32" />
+      <File FileName="SupportMediaXFDemo/MainPage.xaml" Line="34" Column="15" />
+      <File FileName="SupportMediaXFDemo/MainPageViewModel.cs" Line="26" Column="53" />
+      <File FileName="SupportMediaXF/Models/SyncPhotoOptions.cs" Line="16" Column="6" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SupportMediaXF" expanded="True">
-            <Node name="SupportMediaXF.Droid" expanded="True" selected="True" />
+            <Node name="DemoAPP" expanded="True">
+              <Node name="SupportMediaXFDemo" expanded="True" />
+              <Node name="SupportMediaXFDemo.Android" expanded="True">
+                <Node name="Properties" expanded="True" />
+              </Node>
+              <Node name="SupportMediaXFDemo.iOS" expanded="True" />
+            </Node>
+            <Node name="SupportMediaXF" expanded="True">
+              <Node name="Models" expanded="True">
+                <Node name="SyncPhotoOptions.cs" selected="True" />
+              </Node>
+            </Node>
           </Node>
         </State>
       </Pad>
