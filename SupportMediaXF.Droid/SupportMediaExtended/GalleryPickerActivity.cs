@@ -8,6 +8,7 @@ using Android;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
+using Android.Content.Res;
 using Android.Database;
 using Android.Graphics;
 using Android.Icu.Text;
@@ -24,7 +25,7 @@ using Xamarin.Forms;
 
 namespace SupportMediaXF.Droid.SupportMediaExtended
 {
-    [Activity(Label = "GalleryPickerActivity")]
+    [Activity(Label = "GalleryPickerActivity", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize | ConfigChanges.KeyboardHidden)]
     public class GalleryPickerActivity : Activity, IGalleryPickerSelected
     {
         private List<SupportGalleryXF> galleryDirectories;
@@ -105,6 +106,31 @@ namespace SupportMediaXF.Droid.SupportMediaExtended
             ShowDialogGallery();
         }
 
+        private void CheckOrientation(Configuration newConfig)
+        {
+            try
+            {
+                if (newConfig.Orientation == Android.Content.Res.Orientation.Landscape)
+                {
+                    gridView.NumColumns = 5;
+                }
+                else if (newConfig.Orientation == Android.Content.Res.Orientation.Portrait)
+                {
+                    gridView.NumColumns = 3;
+                }
+                galleryImageAdapter.NotifyDataSetChanged();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+        }
+
+        public override void OnConfigurationChanged(Configuration newConfig)
+        {
+            base.OnConfigurationChanged(newConfig);
+            CheckOrientation(newConfig);
+        }
 
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
