@@ -7,6 +7,7 @@ using SupportMediaXF.iOS.SupportMediaExtended;
 using SupportMediaXF.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using UIKit;
 using Xamarin.Forms;
@@ -26,9 +27,69 @@ namespace SupportMediaXF.iOS
         protected bool FlagShow = false;
         private int CurrentParent = -1;
         public SyncPhotoOptions syncPhotoOptions { set; get; }
+        private UICollectionViewFlowLayout iCollectionViewFlowLayout;
 
         public SupportGalleryPickerController (IntPtr handle) : base (handle)
         {
+
+        }
+
+        private UICollectionViewFlowLayout GetLayoutWhenOrientaion()
+        {
+            try
+            {
+                var NumOfColumns = 3;
+                UIInterfaceOrientation orientation = UIApplication.SharedApplication.StatusBarOrientation;
+                switch (orientation)
+                {
+                    case UIInterfaceOrientation.Portrait:
+                        break;
+                    case UIInterfaceOrientation.PortraitUpsideDown:
+                        break;
+                    case UIInterfaceOrientation.LandscapeLeft:
+                        NumOfColumns = 5;
+                        break;
+                    case UIInterfaceOrientation.LandscapeRight:
+                        NumOfColumns = 5;
+                        break;
+                    default:
+                        break;
+                }
+
+
+               
+                var Spacing = 2;
+                var SceenWidth = (View.Bounds.Width - (NumOfColumns - 1) * Spacing) / NumOfColumns;
+
+                iCollectionViewFlowLayout = new UICollectionViewFlowLayout
+                {
+                    MinimumInteritemSpacing = Spacing,
+                    MinimumLineSpacing = Spacing,
+                    ScrollDirection = UICollectionViewScrollDirection.Vertical,
+                    ItemSize = new CoreGraphics.CGSize(SceenWidth, SceenWidth),
+                    //FooterReferenceSize = new CoreGraphics.CGSize(View.Frame.Width, 150)
+                };
+
+                return iCollectionViewFlowLayout;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.StackTrace);
+                return null;    
+            }
+        }
+
+        public override void ViewDidLayoutSubviews()
+        {
+            base.ViewDidLayoutSubviews();
+            try
+            {
+                CollectionGallery.SetCollectionViewLayout(GetLayoutWhenOrientaion(), true);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.StackTrace);
+            }
         }
 
         public override void ViewDidLoad()
@@ -55,21 +116,9 @@ namespace SupportMediaXF.iOS
 
             galleryCollectionSource = new GalleryCollectionSource(assets, this);
 
-            var NumOfColumns = 3;
-            var Spacing = 2;
-            var SceenWidth = (View.Frame.Width - (NumOfColumns - 1) * Spacing) / NumOfColumns;
-
-            var layout = new UICollectionViewFlowLayout
-            {
-                MinimumInteritemSpacing = Spacing,
-                MinimumLineSpacing = Spacing,
-                ScrollDirection = UICollectionViewScrollDirection.Vertical,
-                ItemSize = new CoreGraphics.CGSize(SceenWidth, SceenWidth),
-                FooterReferenceSize = new CoreGraphics.CGSize(View.Frame.Width, 150)
-            };
             CollectionGallery.RegisterNibForCell(UINib.FromName("GalleryItemPhotoViewCell", NSBundle.MainBundle), "GalleryItemPhotoViewCell");
             CollectionGallery.DataSource = galleryCollectionSource;
-            CollectionGallery.SetCollectionViewLayout(layout, true);
+            CollectionGallery.SetCollectionViewLayout(GetLayoutWhenOrientaion(), true);
 
             ViewBottom.BackgroundColor = color.ColorWithAlpha(0.7f);
             ButtonDone.Layer.BackgroundColor = UIColor.FromRGB(42, 131, 193).CGColor;

@@ -52,6 +52,39 @@ namespace SupportMediaXF.iOS
             }
         }
 
+        public override void ViewDidLayoutSubviews()
+        {
+            base.ViewDidLayoutSubviews();
+            try
+            {
+                videoPreviewLayer.Frame = this.View.Bounds;
+
+                UIInterfaceOrientation orientation = UIApplication.SharedApplication.StatusBarOrientation;
+                switch (orientation)
+                {
+                    case UIInterfaceOrientation.Portrait:
+                        videoPreviewLayer.Connection.VideoOrientation = AVCaptureVideoOrientation.Portrait;
+                        break;
+                    case UIInterfaceOrientation.PortraitUpsideDown:
+                        videoPreviewLayer.Connection.VideoOrientation = AVCaptureVideoOrientation.PortraitUpsideDown;
+                        break;
+                    case UIInterfaceOrientation.LandscapeLeft:
+                        videoPreviewLayer.Connection.VideoOrientation = AVCaptureVideoOrientation.LandscapeLeft;
+                        break;
+                    case UIInterfaceOrientation.LandscapeRight:
+                        videoPreviewLayer.Connection.VideoOrientation = AVCaptureVideoOrientation.LandscapeRight;
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.StackTrace);
+            }
+        }
+
         public void SetupLiveCameraStream()
         {
             captureSession = new AVCaptureSession();
@@ -59,7 +92,7 @@ namespace SupportMediaXF.iOS
             var viewLayer = CameraView.Layer;
             videoPreviewLayer = new AVCaptureVideoPreviewLayer(captureSession)
             {
-                Frame = this.View.Frame
+                Frame = this.View.Bounds
             };
             CameraView.Layer.AddSublayer(videoPreviewLayer);
 
