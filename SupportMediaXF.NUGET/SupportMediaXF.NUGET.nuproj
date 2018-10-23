@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(NuGetAuthoringPath)\NuGet.Packaging.Authoring.props" Condition="Exists('$(NuGetAuthoringPath)\NuGet.Packaging.Authoring.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7449CB80-A275-4161-9412-4FC619590518}</ProjectGuid>
+    <Description>Take &amp; Pick Photos Plugin for Xamarin Forms, Simple cross platform plugin to take photos or pick them from a gallery from shared code</Description>
+    <PackageId>SupportMediaXF</PackageId>
+    <PackageVersion>1.0</PackageVersion>
+    <Authors>QuachHoang</Authors>
+    <DevelopmentDependency>false</DevelopmentDependency>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>SupportMediaXF.NUGET</RootNamespace>
+    <UsePartialTypes>false</UsePartialTypes>
+    <AssemblyName>SupportMediaXF.NUGET</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <Owners>QuachHoang</Owners>
+    <Copyright>HoangQuach@2018
+
+</Copyright>
+    <PackageTags>Xamarin, XamarinForms, Xamarin.Android, Xamarin.iOS, XF, MediaPlugin, Camera, GalleryPicker</PackageTags>
+    <Title>SupportMediaXF</Title>
+    <Summary>Take &amp; Pick Photos Plugin for Xamarin Forms, Simple cross platform plugin to take photos or pick them from a gallery from shared code
+</Summary>
+    <PackageProjectUrl>https://github.com/bulubuloa/SupportMediaXF</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/bulubuloa/SupportMediaXF</PackageLicenseUrl>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <OutputPath>bin\Debug</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NuGet.Build.Packaging">
+      <Version>0.2.0</Version>
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SupportMediaXF\SupportMediaXF.csproj">
+      <Project>{AECB1BCA-35DD-47C4-976A-730F1162EE73}</Project>
+      <Name>SupportMediaXF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SupportMediaXF.Droid\SupportMediaXF.Droid.csproj">
+      <Project>{5B00A724-C0C5-4B7B-8B56-2FB06B6762BA}</Project>
+      <Name>SupportMediaXF.Droid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SupportMediaXF.iOS\SupportMediaXF.iOS.csproj">
+      <Project>{8BD8F633-0D69-4AC0-B681-F2E5099981FE}</Project>
+      <Name>SupportMediaXF.iOS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
+  <Import Project="$(NuGetAuthoringPath)\NuGet.Packaging.Authoring.targets" Condition="Exists('$(NuGetAuthoringPath)\NuGet.Packaging.Authoring.targets')" />
+</Project>

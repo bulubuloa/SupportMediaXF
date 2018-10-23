@@ -2,11 +2,21 @@
   <MonoDevelop.Ide.ItemProperties.SupportMediaXF.Droid AndroidDesignerPreferredDevice="Nexus 4" />
   <MonoDevelop.Ide.Workbench ActiveDocument="SupportMediaXF.Droid/SupportMediaExtended/Camera/CamActivity.cs">
     <Files>
-      <File FileName="SupportMediaXF.Droid/SupportMediaExtended/Camera/CamActivity.cs" Line="26" Column="64" />
+      <File FileName="SupportMediaXF.Droid/SupportMediaExtended/Camera/CamActivity.cs" Line="99" Column="13" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="SupportMediaXF" expanded="True">
+            <Node name="SupportMediaXF.NUGET" expanded="True" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.ItemProperties.DemoAPP.SupportMediaXFDemo.Android PreferredExecutionTarget="Android.E5AZCY489464" />
+  <MonoDevelop.Ide.ItemProperties.SupportMediaXF.NUGET FirstBuild="True" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
