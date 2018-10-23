@@ -23,7 +23,7 @@ using Xamarin.Forms;
 
 namespace SupportMediaXF.Droid.SupportMediaExtended.Camera
 {
-    [Activity(Label = "CamActivity")]
+    [Activity(Label = "CamActivity", ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
     public class CamActivity : Activity, TextureView.ISurfaceTextureListener
     {
         private ImageButton bttCapture, bttBack, bttSwitch, bttFlash;
