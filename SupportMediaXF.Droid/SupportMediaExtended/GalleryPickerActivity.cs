@@ -305,11 +305,17 @@ namespace SupportMediaXF.Droid.SupportMediaExtended
 
                 if (FlagDirectory)
                 {
-                    var imageSets = new List<SupportImageXF>();
-                    imageSets.AddRange(galleriesRaw[PositionDirectory].Images);
-                    imageSets.Add(new SupportImageXF() { OriginalPath = absolutePathOfImage });
+                    try
+                    {
+                        var imageSets = new List<SupportImageXF>();
+                        imageSets.AddRange(galleriesRaw[PositionDirectory].Images);
+                        imageSets.Add(new SupportImageXF() { OriginalPath = absolutePathOfImage });
+                        galleriesRaw[PositionDirectory].Images = (imageSets);
+                    }
+                    catch (Exception ex)
+                    {
 
-                    galleriesRaw[PositionDirectory].Images = (imageSets);
+                    }
                 }
                 else
                 {
@@ -422,8 +428,11 @@ namespace SupportMediaXF.Droid.SupportMediaExtended
                 var itemSelect = galleryDirectories[position];
                 buttonSpinner.Text = itemSelect.IF_GetTitle();
 
-                galleryImageAdapter = new GalleryImageAdapter(this, galleryDirectories, position, this);
-                gridView.Adapter = galleryImageAdapter;
+                if(position < galleryDirectories.Count)
+                {
+                    galleryImageAdapter = new GalleryImageAdapter(this, galleryDirectories, position, this);
+                    gridView.Adapter = galleryImageAdapter;
+                }
             }
             catch (Exception ex)
             {

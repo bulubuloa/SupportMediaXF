@@ -1,25 +1,15 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          android:versionCode="1"
-          android:versionName="1.0"
-          package="com.hqdevteam.SupportMediaXFDemo">
-    
-    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="27" />
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera2.full" />
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <application android:label="SupportMediaXFDemo.Android">
-        <provider android:authorities="com.hqdevteam.SupportMediaXFDemo"
-                  android:exported="false"
-                  android:grantUriPermissions="true"
-                  android:name="android.support.v4.content.FileProvider">
-            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" />
-        </provider>
-    </application>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.hqdevteam.SupportMediaXFDemo">
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="27" />
+	<uses-feature android:name="android.hardware.camera" />
+	<uses-feature android:name="android.hardware.camera2.full" />
+	<uses-feature android:name="android.hardware.camera" android:required="false" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.CAMERA" />
+	<application android:label="SupportMediaXFDemo.Android">
+		<provider android:authorities="com.hqdevteam.SupportMediaXFDemo" android:exported="false" android:grantUriPermissions="true" android:name="android.support.v4.content.FileProvider">
+			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" />
+		</provider>
+	</application>
 </manifest>

@@ -151,8 +151,8 @@ namespace SupportMediaXF.Droid.SupportMediaExtended.Camera
             }
             catch (System.IO.IOException ex)
             {
-            }
 
+            }
         }
         private void FinishTakePhoto()
         {
