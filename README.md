@@ -2,7 +2,8 @@
 # SupportMediaXF
 Simple cross platform plugin to take photos or pick them from a gallery from shared code
 
-[![NuGet](https://img.shields.io/badge/SupportMediaXF-v1.0.0-blue.svg)](https://www.nuget.org/packages/SupportMediaXF/)
+### Available on NuGet: 
+![Build status](https://ci.appveyor.com/api/projects/status/7g3sppml9ewumr9i/branch/master?svg=true) [![NuGet Badge](https://buildstats.info/nuget/SupportMediaXF)](https://www.nuget.org/packages/SupportMediaXF/)
 
 **Setup for iOS project**
 
