@@ -204,7 +204,7 @@ namespace SupportMediaXF.iOS
 
             var result = new PhotoSetNative();
             result.galleryImageXF.Checked = true;
-            //result.galleryImageXF.ImageRawData = jpegAsByteArray;
+            result.galleryImageXF.RawData = jpegAsByteArray;
             result.galleryImageXF.ImageSourceXF = ImageSource.FromStream(() => new System.IO.MemoryStream(jpegAsByteArray));
 
             OnPicked?.Invoke(result);

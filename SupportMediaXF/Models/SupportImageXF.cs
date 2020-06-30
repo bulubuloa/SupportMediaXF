@@ -60,6 +60,17 @@ namespace SupportMediaXF.Models
             get => _ProcessFilePath;
         }
 
+        private byte[] _rawData;
+        public byte[] RawData
+        {
+            set
+            {
+                _rawData = value;
+                OnPropertyChanged();
+            }
+            get => _rawData;
+        }
+
         public SupportImageXF()
         {
             Checked = false;

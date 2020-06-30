@@ -18,8 +18,10 @@ namespace SupportMediaXFDemo
             var xx = DependencyService.Get<ISupportMedia>();
             if (xx != null)
             {
-                var result = await xx.IF_OpenCamera(new SyncPhotoOptions());
+                var option = new SyncPhotoOptions();
+                var result = await xx.IF_OpenCamera(option);
                 ImageItems.Add(result);
+                var result2 = await xx.IF_WriteStreamToFile(result, option);
             }
         }
 

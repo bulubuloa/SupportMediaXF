@@ -252,5 +252,39 @@ namespace SupportMediaXF.iOS.SupportMediaExtended
                 }
             });
         }
+
+        public Task<SupportImageXF> IF_WriteStreamToFile(SupportImageXF imageSet, SyncPhotoOptions options)
+        {
+            return Task.Factory.StartNew(() => {
+                try
+                {
+                    var newWidth = options.Width;
+                    var newHeight = options.Height;
+
+                    // Create temp file path
+                    var fileNameOnly = "new_";
+                    var fileExtension = ".jpg";
+                    var newFileName = fileNameOnly + "_" + DateTime.Now.ToFormatString("yyyyMMddHHmmss") + "_" + newWidth + "x" + newHeight + fileExtension;
+                    var tempPath = Path.Combine(Path.GetTempPath(), newFileName);
+                    FileHelper.CreateFile(tempPath);
+
+                    // Write data to temp file 
+                    using (var newStream = FileHelper.GetWriteFileStream(tempPath))
+                    {
+                        var buffer = imageSet.RawData;
+                        newStream.Write(buffer, 0, buffer.Length);
+
+                        imageSet.ProcessFilePath = tempPath;
+                    }
+
+                    return imageSet;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.StackTrace);
+                    return imageSet;
+                }
+            });
+        }
     }
 }
