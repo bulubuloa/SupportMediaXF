@@ -3,11 +3,6 @@ using Xamarin.Forms;
 
 namespace SupportMediaXF.Models
 {
-    public enum ImageAsyncStatus
-    {
-        InCloud, InLocal, SyncFromCloud, Uploading, Uploaded, SyncCloudError, UploadError
-    }
-
     public class SupportImageXF : BindableObject
     {
         private ImageSource _ImageSourceXF;
@@ -32,32 +27,6 @@ namespace SupportMediaXF.Models
             get => _Checked;
         }
 
-        private byte[] _ImageRawData;
-        public byte[] ImageRawData
-        {
-            set
-            {
-                _ImageRawData = value;
-                OnPropertyChanged();
-            }
-            get => _ImageRawData;
-        }
-
-        private bool _CloudStorage;
-        public bool CloudStorage
-        {
-            set
-            {
-                _CloudStorage = value;
-                OnPropertyChanged();
-                if (_CloudStorage)
-                    AsyncStatus = ImageAsyncStatus.InCloud;
-                else
-                    AsyncStatus = ImageAsyncStatus.InLocal;
-            }
-            get => _CloudStorage;
-        }
-
         private string _OriginalPath;
         public string OriginalPath
         {
@@ -69,32 +38,32 @@ namespace SupportMediaXF.Models
             get => _OriginalPath;
         }
 
-        private string _UrlUploaded;
-        public string UrlUploaded
+        private bool _Processing;
+        public bool Processing
         {
             set
             {
-                _UrlUploaded = value;
+                _Processing = value;
                 OnPropertyChanged();
             }
-            get => _UrlUploaded;
+            get => _Processing;
         }
 
-        private ImageAsyncStatus _AsyncStatus;
-        public ImageAsyncStatus AsyncStatus
+        private string _ProcessFilePath;
+        public string ProcessFilePath
         {
             set
             {
-                _AsyncStatus = value;
+                _ProcessFilePath = value;
                 OnPropertyChanged();
             }
-            get => _AsyncStatus;
+            get => _ProcessFilePath;
         }
 
         public SupportImageXF()
         {
             Checked = false;
-            AsyncStatus = ImageAsyncStatus.InLocal;
+            Processing = true;
         }
     }
 }

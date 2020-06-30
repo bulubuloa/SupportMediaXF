@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="SupportMediaXFDemo.MainPage"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:SupportMediaXFDemo">
+<ContentPage
+    x:Class="SupportMediaXFDemo.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:SupportMediaXFDemo">
     <StackLayout Orientation="Vertical">
-        <Button Command="{Binding OpenCameraCommand}" Text="Open Camera" />
+        <Button Margin="0,50,0,0" Command="{Binding OpenCameraCommand}" Text="Open Camera" />
         <Button Command="{Binding OpenGalleryCommand}" Text="Open Gallery" />
-        <ListView Grid.Column="1"
-                  HorizontalOptions="FillAndExpand"
-                  VerticalOptions="FillAndExpand"
-                  BackgroundColor="Silver"
-                  HasUnevenRows="true"
-                  ItemsSource="{Binding ImageItems}">
+        <ListView
+            Grid.Column="1"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            BackgroundColor="Silver"
+            HasUnevenRows="true"
+            ItemsSource="{Binding ImageItems}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout WidthRequest="100"
-                                     HeightRequest="100"
-                                     BackgroundColor="Green"
-                                     Orientation="Vertical"
-                                     Spacing="0">
-                            <Image x:Name="Image"
-                                   WidthRequest="100"
-                                   HeightRequest="100"
-                                   Aspect="AspectFit"
-                                   Source="{Binding ImageSourceXF}" />
-                        </StackLayout>
+                        <Grid>
+                            <Image
+                                x:Name="Image"
+                                WidthRequest="150"
+                                HeightRequest="150"
+                                Aspect="AspectFit"
+                                Source="{Binding ImageSourceXF}" />
+
+                            <ActivityIndicator
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="CenterAndExpand"
+                                Color="Red"
+                                IsRunning="{Binding Processing}" />
+                        </Grid>
+
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

@@ -20,6 +20,8 @@ namespace SupportMediaXF.iOS
         AVCaptureVideoPreviewLayer videoPreviewLayer;
         public SyncPhotoOptions syncPhotoOptions { set; get; }
 
+        public event Action<PhotoSetNative> OnPicked;
+
         public SupportCameraController (IntPtr handle) : base (handle)
         {
         }
@@ -160,7 +162,8 @@ namespace SupportMediaXF.iOS
 
         void BttBack_TouchUpInside(object sender, EventArgs e)
         {
-            DismissViewController(true, null);
+            OnPicked?.Invoke(null);
+            //DismissViewController(true, null);
         }
 
         void BttFlash_TouchUpInside(object sender, EventArgs e)
@@ -201,14 +204,15 @@ namespace SupportMediaXF.iOS
 
             var result = new PhotoSetNative();
             result.galleryImageXF.Checked = true;
-            result.galleryImageXF.ImageRawData = jpegAsByteArray;
-            result.galleryImageXF.AsyncStatus = ImageAsyncStatus.InLocal;
+            //result.galleryImageXF.ImageRawData = jpegAsByteArray;
             result.galleryImageXF.ImageSourceXF = ImageSource.FromStream(() => new System.IO.MemoryStream(jpegAsByteArray));
 
-            MessagingCenter.Send<SupportCameraController, List<PhotoSetNative>>(this, Utils.SubscribeImageFromCamera, new List<PhotoSetNative>(){
-                result
-            });
-            DismissModalViewController(true);
+            OnPicked?.Invoke(result);
+
+            //MessagingCenter.Send<SupportCameraController, List<PhotoSetNative>>(this, Utils.SubscribeImageFromCamera, new List<PhotoSetNative>(){
+            //    result
+            //});
+            //DismissModalViewController(true);
         }
 
         void ConfigureCameraForDevice(AVCaptureDevice device)
