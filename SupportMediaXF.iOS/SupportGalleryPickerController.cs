@@ -29,6 +29,8 @@ namespace SupportMediaXF.iOS
         public SyncPhotoOptions syncPhotoOptions { set; get; }
         private UICollectionViewFlowLayout iCollectionViewFlowLayout;
 
+        public event Action<List<PhotoSetNative>> OnPicked;
+
         public SupportGalleryPickerController (IntPtr handle) : base (handle)
         {
 
@@ -56,8 +58,6 @@ namespace SupportMediaXF.iOS
                         break;
                 }
 
-
-               
                 var Spacing = 2;
                 var SceenWidth = (View.Bounds.Width - (NumOfColumns - 1) * Spacing) / NumOfColumns;
 
@@ -127,13 +127,15 @@ namespace SupportMediaXF.iOS
 
             ButtonBack.TouchUpInside += (object sender, EventArgs e) =>
             {
-                DismissViewController(true, null);
+                OnPicked?.Invoke(new List<PhotoSetNative>());
+                //DismissViewController(true, null);
             };
 
             ButtonDone.TouchUpInside += (object sender, EventArgs e) =>
             {
-                MessagingCenter.Send<SupportGalleryPickerController, List<PhotoSetNative>>(this, Utils.SubscribeImageFromGallery, GetCurrentSelected());
-                DismissModalViewController(true);
+                OnPicked?.Invoke(GetCurrentSelected());
+                //MessagingCenter.Send<SupportGalleryPickerController, List<PhotoSetNative>>(this, Utils.SubscribeImageFromGallery, GetCurrentSelected());
+                //DismissModalViewController(true);
             };
 
             ButtonSpinner.TouchUpInside += (sender, e) => {
@@ -223,7 +225,7 @@ namespace SupportMediaXF.iOS
                             {
                                 Collection = itemRaw,
                             };
-                            colec.Images.Add(new PhotoSetNative());
+                            //colec.Images.Add(new PhotoSetNative());
 
                             foreach (var item in items)
                             {
@@ -255,68 +257,59 @@ namespace SupportMediaXF.iOS
             HideData();
 
             assets.Clear();
-            var xx = galleryDirectories[position];
 
-            ButtonSpinner.SetTitle(xx.Collection.LocalizedTitle, UIControlState.Normal);
+            var targetAlbum = galleryDirectories[position];
 
-            assets.AddRange(xx.Images);
+            ButtonSpinner.SetTitle(targetAlbum.Collection.LocalizedTitle, UIControlState.Normal);
+
+            assets.AddRange(targetAlbum.Images);
 
             CollectionGallery.ReloadData();
         }
 
-        public void IF_ImageSelected(int positionDirectory, int positionImage, ImageSource imageSource, byte[] stream)
+        public void IF_ImageSelected(int positionDirectory, int positionImage, ImageSource imageSource)
         {
             var item = galleryDirectories[CurrentParent].Images[positionImage];
             item.galleryImageXF.Checked = !item.galleryImageXF.Checked;
-            CollectionGallery.ReloadData();
 
-            if (item.galleryImageXF.Checked)
-            {
-                var options = new PHContentEditingInputRequestOptions()
-                {
-                };
+            CollectionGallery.ReloadItems(new NSIndexPath[] { NSIndexPath.FromRowSection(positionImage, 0) });
+            //CollectionGallery.ReloadData();
 
-                item.Image.RequestContentEditingInput(options, (contentEditingInput, requestStatusInfo) =>
-                {
-                    var Key = new NSString("PHContentEditingInputResultIsInCloudKey");
-                    if (requestStatusInfo.ContainsKey(Key))
-                    {
-                        var valueOfKey = requestStatusInfo.ObjectForKey(Key);
-                        if (valueOfKey.ToString().Equals("1"))
-                        {
-                            item.galleryImageXF.CloudStorage = true;
-                        }
-                        else
-                        {
-                            item.galleryImageXF.CloudStorage = false;
-                            //item.Path = contentEditingInput.FullSizeImageUrl.ToString().Substring(7);
-                        }
-                    }
-                });
-            }
-            else
-            {
-                item.galleryImageXF.OriginalPath = null;
-            }
+            //if (item.galleryImageXF.Checked)
+            //{
+            //    var options = new PHContentEditingInputRequestOptions()
+            //    {
+            //    };
+
+            //    item.Image.RequestContentEditingInput(options, (contentEditingInput, requestStatusInfo) =>
+            //    {
+            //        var Key = new NSString("PHContentEditingInputResultIsInCloudKey");
+            //        if (requestStatusInfo.ContainsKey(Key))
+            //        {
+            //            var valueOfKey = requestStatusInfo.ObjectForKey(Key);
+            //            if (valueOfKey.ToString().Equals("1"))
+            //            {
+            //                item.galleryImageXF.CloudStorage = true;
+            //            }
+            //            else
+            //            {
+            //                item.galleryImageXF.CloudStorage = false;
+            //                //item.Path = contentEditingInput.FullSizeImageUrl.ToString().Substring(7);
+            //            }
+            //        }
+            //    });
+            //}
+            //else
+            //{
+            //    item.galleryImageXF.OriginalPath = null;
+            //}
 
             if (imageSource != null)
             {
                 item.galleryImageXF.ImageSourceXF = imageSource;
             }
-            if (stream != null)
-            {
-                item.galleryImageXF.ImageRawData = stream;
-            }
-
-            var count = GetCurrentSelected().Count;
-            if (count > 0)
-            {
-                ButtonDone.SetTitle("Done (" + count + ")", UIControlState.Normal);
-            }
-            else
-            {
-                ButtonDone.SetTitle("Done", UIControlState.Normal);
-            }
+           
+            SetDoneText();
         }
 
         public void IF_CameraSelected(int pos)
@@ -330,6 +323,26 @@ namespace SupportMediaXF.iOS
         {
             var result = galleryDirectories.SelectMany(directory => directory.Images).Where(Image => Image.galleryImageXF.Checked).ToList();
             return result;
+        }
+
+        private void SetDoneText()
+        {
+            try
+            {
+                var count = GetCurrentSelected().Count;
+                if (count > 0)
+                {
+                    ButtonDone.SetTitle("Done (" + count + ")", UIControlState.Normal);
+                }
+                else
+                {
+                    ButtonDone.SetTitle("Done", UIControlState.Normal);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
         }
     }
 }

@@ -13,17 +13,75 @@ namespace SupportMediaXFDemo
     public class MainPageViewModel : BindableObject, ISupportMediaResultListener
     {
         public ICommand OpenCameraCommand => new Command(OnOpenCameraCommand);
-        private void OnOpenCameraCommand()
+        private async void OnOpenCameraCommand()
         {
-            DependencyService.Get<ISupportMedia>().IF_OpenCamera(this, new SyncPhotoOptions(), 1);
+            var xx = DependencyService.Get<ISupportMedia>();
+            if (xx != null)
+            {
+                var option = new SyncPhotoOptions();
+                var result = await xx.IF_OpenCamera(option);
+                ImageItems.Add(result);
+                var result2 = await xx.IF_WriteStreamToFile(result, option);
+
+                var xxyy = new SupportImageXF()
+                {
+                    ImageSourceXF = ImageSource.FromFile(result2.ProcessFilePath)
+                };
+                ImageItems.Add(xxyy);
+            }
         }
 
         public ICommand OpenGalleryCommand => new Command(OnOpenGalleryCommand);
-        private void OnOpenGalleryCommand()
+        private async void OnOpenGalleryCommand()
         {
             var xx = DependencyService.Get<ISupportMedia>();
             if(xx != null)
-                xx.IF_OpenGallery(this, new SyncPhotoOptions(), 2);
+            {
+                var result = await  xx.IF_OpenGallery(new SyncPhotoOptions());
+                foreach (var item in result)
+                {
+                    ImageItems.Add(item);
+                    Console.WriteLine("LocalPath ==> " + item.OriginalPath);
+                    SyncImageInBackground(item);
+
+
+                    //Task.Factory.StartNew( async () =>
+                    //{
+                    //    Console.WriteLine("Start sync");
+                    //    var result = await newInstance.IF_SyncPhotoFromCloud(item, null);
+                    //    Console.WriteLine("Finish Start sync");
+                    //    item.Processing = false;
+                    //});
+                }
+            }
+        }
+
+        private void SyncImageInBackground(SupportImageXF supportImageXF)
+        {
+            Task.Factory.StartNew(async() =>
+            {
+                try
+                {
+                    await Task.Delay(200);
+
+                    Console.WriteLine($"Start sync => " + supportImageXF.OriginalPath);
+                    var newInstance = DependencyService.Get<ISupportMedia>();
+                    var result = await newInstance.IF_SyncPhotoFromCloud(supportImageXF, null);
+                    //supportImageXF.Processing = false;
+
+                    if(!string.IsNullOrEmpty(result.ProcessFilePath))
+                    {
+                        supportImageXF.ProcessFilePath = result.ProcessFilePath;
+                        supportImageXF.Processing = false;
+                        Console.WriteLine("Finish Start sync => " + supportImageXF.OriginalPath + " ==> " + supportImageXF.ProcessFilePath);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.StackTrace);
+                }
+            });
+            
         }
 
         public void IF_PickedResult(List<SupportImageXF> result, int _CodeRequest)
@@ -31,27 +89,9 @@ namespace SupportMediaXFDemo
             foreach (var item in result)
             {
                 ImageItems.Add(item);
-
+                Console.WriteLine("LocalPath ==> " + item.OriginalPath);
                 Task.Delay(200).ContinueWith(async (arg) => {
 
-                    if (item.ImageRawData == null)
-                    {
-                        //sync image from icloud
-                        //item.AsyncStatus = ImageAsyncStatus.SyncFromCloud;
-                        //var resultX = await DependencyService.Get<ISupportMedia>().IF_SyncPhotoFromCloud(this, item, new SyncPhotoOptions());
-
-                        //upload to your server
-                        //item.AsyncStatus = ImageAsyncStatus.Uploading;
-                        //await new APIServiceAES().UploadImageAsync(new System.IO.MemoryStream(item.ImageRawData), item.OriginalPath + ".JPEG");
-                        //item.AsyncStatus = ImageAsyncStatus.Uploaded;
-                    }
-                    else
-                    {
-                        //upload to your server
-                        //item.AsyncStatus = ImageAsyncStatus.Uploading;
-                        //await new APIServiceAES().UploadImageAsync(new System.IO.MemoryStream(item.ImageRawData), item.OriginalPath + ".JPEG");
-                        //item.AsyncStatus = ImageAsyncStatus.Uploaded;
-                    }
                 });
             }
         }

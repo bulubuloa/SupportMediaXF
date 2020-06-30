@@ -72,19 +72,25 @@ namespace SupportMediaXF.iOS.SupportMediaExtended
                 var options = new PHImageRequestOptions
                 {
                     Synchronous = true,
-                    DeliveryMode = PHImageRequestOptionsDeliveryMode.FastFormat
+                    DeliveryMode = PHImageRequestOptionsDeliveryMode.HighQualityFormat
                 };
 
-                PHImageManager.DefaultManager.RequestImageForAsset(photoSetNative.Image, Bounds.Size, PHImageContentMode.AspectFit, options, (result, info) => {
-                    imgIcon.Image = result;
-                });
+                PHImageManager.DefaultManager.RequestImageForAsset(
+                    photoSetNative.Image,
+                    new CoreGraphics.CGSize(250,250),
+                    PHImageContentMode.AspectFit,
+                    options,
+                    (result, info) => {
+                        imgIcon.Image = result;
+                    }
+                );
 
 
                 if (ActionClick == null)
                 {
                     ActionClick = delegate {
                         var stream = imgIcon.Image.AsJPEG().AsStream().ToByteArray();
-                        action.IF_ImageSelected(0, (int)CheckBox.Tag, ImageSource.FromStream(() => new System.IO.MemoryStream(stream)), null);
+                        action.IF_ImageSelected(0, (int)CheckBox.Tag, ImageSource.FromStream(() => new System.IO.MemoryStream(stream)));
                     };
                     CheckBox.TouchUpInside += (sender, e) =>
                     {

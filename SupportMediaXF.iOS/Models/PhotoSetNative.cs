@@ -13,7 +13,6 @@ namespace SupportMediaXF.iOS.Models
         {
             galleryImageXF = new SupportImageXF();
             galleryImageXF.Checked = false;
-            galleryImageXF.CloudStorage = true;
         }
     }
 }
