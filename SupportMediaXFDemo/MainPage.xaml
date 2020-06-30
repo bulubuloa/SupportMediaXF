@@ -31,7 +31,6 @@
                                 Color="Red"
                                 IsRunning="{Binding Processing}" />
                         </Grid>
-
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

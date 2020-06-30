@@ -60,6 +60,7 @@ namespace SupportMediaXF.iOS
             try
             {
                 videoPreviewLayer.Frame = this.View.Bounds;
+                videoPreviewLayer.VideoGravity = AVLayerVideoGravity.ResizeAspectFill;
 
                 UIInterfaceOrientation orientation = UIApplication.SharedApplication.StatusBarOrientation;
                 switch (orientation)
@@ -96,8 +97,9 @@ namespace SupportMediaXF.iOS
             {
                 Frame = this.View.Bounds
             };
+            videoPreviewLayer.VideoGravity = AVLayerVideoGravity.ResizeAspectFill;
             CameraView.Layer.AddSublayer(videoPreviewLayer);
-
+            
             var captureDevice = AVCaptureDevice.GetDefaultDevice(AVMediaType.Video);
             ConfigureCameraForDevice(captureDevice);
             captureDeviceInput = AVCaptureDeviceInput.FromDevice(captureDevice);

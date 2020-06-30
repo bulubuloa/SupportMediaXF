@@ -1,32 +1,37 @@
 ﻿<Properties StartupConfiguration="{67C931B4-39AF-457A-A122-301F6C58AAAC}|Default">
   <MonoDevelop.Ide.ItemProperties.DemoAPP.SupportMediaXFDemo.iOS Xamarin.HotReload.XFormsNugetUpgradeInfoBar.SupportMediaXFDemo.iOS.HideInfoBar="True" automaticSigning="False" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.00008020-000C11643E09002E" Xamarin.HotReload.WrongLinkerErrorInfoBar.SupportMediaXFDemo.iOS.HideInfoBar="True" />
   <MonoDevelop.Ide.ItemProperties.SupportMediaXF.Droid AndroidDesignerPreferredDevice="Nexus 4" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="SupportMediaXFDemo/MainPage.xaml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SupportMediaXF.iOS/SupportCameraController.cs">
     <Files>
-      <File FileName="SupportMediaXF.iOS/SupportCameraController.cs" Line="203" Column="84" />
-      <File FileName="SupportMediaXF.iOS/SupportGalleryPickerController.cs" Line="32" Column="48" />
-      <File FileName="SupportMediaXF.iOS/SupportMediaExtended/ISupportMediaExtended.cs" Line="276" Column="1" />
-      <File FileName="SupportMediaXFDemo/MainPageViewModel.cs" Line="61" Column="78" />
-      <File FileName="SupportMediaXF/Models/SyncPhotoOptions.cs" />
-      <File FileName="SupportMediaXF/DependencyServices/ISupportMedia.cs" Line="16" Column="2" />
-      <File FileName="SupportMediaXF/Models/SupportImageXF.cs" Line="67" Column="14" />
-      <File FileName="SupportMediaXFDemo/MainPage.xaml" Line="1" Column="1" />
+      <File FileName="SupportMediaXFDemo/MainPageViewModel.cs" Line="24" Column="51" />
+      <File FileName="SupportMediaXF/DependencyServices/ISupportMedia.cs" Line="14" Column="30" />
+      <File FileName="SupportMediaXF.iOS/SupportMediaExtended/ISupportMediaExtended.cs" Line="265" Column="47" />
+      <File FileName="SupportMediaXF/Models/SupportImageXF.cs" Line="19" Column="31" />
+      <File FileName="SupportMediaXF/Models/SupportGalleryXF.cs" Line="1" Column="1" />
+      <File FileName="SupportMediaXF/Models/SyncPhotoOptions.cs" Line="17" Column="2" />
+      <File FileName="SupportMediaXF.iOS/SupportCameraController.cs" Line="99" Column="23" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SupportMediaXF" expanded="True">
             <Node name="DemoAPP" expanded="True">
-              <Node name="SupportMediaXFDemo" expanded="True">
-                <Node name="MainPage.xaml" selected="True" />
+              <Node name="SupportMediaXFDemo" expanded="True" />
+              <Node name="SupportMediaXFDemo.iOS" expanded="True">
+                <Node name="Properties" expanded="True" />
+                <Node name="Resources" expanded="True" />
               </Node>
             </Node>
             <Node name="SupportMediaXF" expanded="True">
+              <Node name="Dependencies" expanded="True" />
               <Node name="DependencyServices" expanded="True" />
+              <Node name="Interfaces" expanded="True" />
               <Node name="Models" expanded="True" />
             </Node>
             <Node name="SupportMediaXF.iOS" expanded="True">
+              <Node name="Packages" expanded="True" />
               <Node name="SupportMediaExtended" expanded="True" />
+              <Node name="SupportCameraController.cs" selected="True" />
             </Node>
           </Node>
         </State>

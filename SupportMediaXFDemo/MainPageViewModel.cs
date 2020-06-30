@@ -22,6 +22,12 @@ namespace SupportMediaXFDemo
                 var result = await xx.IF_OpenCamera(option);
                 ImageItems.Add(result);
                 var result2 = await xx.IF_WriteStreamToFile(result, option);
+
+                var xxyy = new SupportImageXF()
+                {
+                    ImageSourceXF = ImageSource.FromFile(result2.ProcessFilePath)
+                };
+                ImageItems.Add(xxyy);
             }
         }
 
@@ -37,7 +43,6 @@ namespace SupportMediaXFDemo
                     ImageItems.Add(item);
                     Console.WriteLine("LocalPath ==> " + item.OriginalPath);
                     SyncImageInBackground(item);
-
 
 
                     //Task.Factory.StartNew( async () =>
@@ -87,7 +92,6 @@ namespace SupportMediaXFDemo
                 Console.WriteLine("LocalPath ==> " + item.OriginalPath);
                 Task.Delay(200).ContinueWith(async (arg) => {
 
-                    
                 });
             }
         }

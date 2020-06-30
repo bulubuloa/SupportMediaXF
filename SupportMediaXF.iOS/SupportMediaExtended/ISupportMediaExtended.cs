@@ -275,7 +275,11 @@ namespace SupportMediaXF.iOS.SupportMediaExtended
                         newStream.Write(buffer, 0, buffer.Length);
 
                         imageSet.ProcessFilePath = tempPath;
+
+                       
                     }
+
+                    Console.WriteLine(imageSet.ProcessFilePath);
 
                     return imageSet;
                 }
