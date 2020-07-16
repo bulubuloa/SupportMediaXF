@@ -1,22 +1,19 @@
-﻿<Properties StartupConfiguration="{67C931B4-39AF-457A-A122-301F6C58AAAC}|Default">
-  <MonoDevelop.Ide.ItemProperties.DemoAPP.SupportMediaXFDemo.iOS Xamarin.HotReload.XFormsNugetUpgradeInfoBar.SupportMediaXFDemo.iOS.HideInfoBar="True" automaticSigning="False" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.00008020-000C11643E09002E" Xamarin.HotReload.WrongLinkerErrorInfoBar.SupportMediaXFDemo.iOS.HideInfoBar="True" />
+﻿<Properties StartupConfiguration="{4C1E50F8-36D6-4435-B270-CBB7AF05139C}|Default">
+  <MonoDevelop.Ide.ItemProperties.DemoAPP.SupportMediaXFDemo.iOS Xamarin.HotReload.XFormsNugetUpgradeInfoBar.SupportMediaXFDemo.iOS.HideInfoBar="True" automaticSigning="False" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.0DF4B49D-24DC-4BD0-9731-88A5DABAE6C3" Xamarin.HotReload.WrongLinkerErrorInfoBar.SupportMediaXFDemo.iOS.HideInfoBar="True" />
   <MonoDevelop.Ide.ItemProperties.SupportMediaXF.Droid AndroidDesignerPreferredDevice="Nexus 4" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="SupportMediaXF.iOS/SupportCameraController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SupportMediaXF.Droid/SupportMediaExtended/GalleryImageAdapter.cs">
     <Files>
-      <File FileName="SupportMediaXFDemo/MainPageViewModel.cs" Line="24" Column="51" />
-      <File FileName="SupportMediaXF/DependencyServices/ISupportMedia.cs" Line="14" Column="30" />
-      <File FileName="SupportMediaXF.iOS/SupportMediaExtended/ISupportMediaExtended.cs" Line="265" Column="47" />
-      <File FileName="SupportMediaXF/Models/SupportImageXF.cs" Line="19" Column="31" />
-      <File FileName="SupportMediaXF/Models/SupportGalleryXF.cs" Line="1" Column="1" />
-      <File FileName="SupportMediaXF/Models/SyncPhotoOptions.cs" Line="17" Column="2" />
-      <File FileName="SupportMediaXF.iOS/SupportCameraController.cs" Line="99" Column="23" />
+      <File FileName="SupportMediaXF.Droid/SupportMediaExtended/ISupportMediaExtended.cs" Line="60" Column="62" />
+      <File FileName="SupportMediaXF.Droid/SupportMediaExtended/Camera/CamActivity.cs" Line="153" Column="14" />
+      <File FileName="SupportMediaXF.iOS/SupportMediaExtended/ISupportMediaExtended.cs" Line="58" Column="34" NotebookId="1" />
+      <File FileName="SupportMediaXF.Droid/SupportMediaExtended/GalleryPickerActivity.cs" Line="56" Column="1" NotebookId="1" />
+      <File FileName="SupportMediaXF.Droid/SupportMediaExtended/GalleryImageAdapter.cs" Line="66" Column="86" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SupportMediaXF" expanded="True">
             <Node name="DemoAPP" expanded="True">
-              <Node name="SupportMediaXFDemo" expanded="True" />
               <Node name="SupportMediaXFDemo.iOS" expanded="True">
                 <Node name="Properties" expanded="True" />
                 <Node name="Resources" expanded="True" />
@@ -28,21 +25,23 @@
               <Node name="Interfaces" expanded="True" />
               <Node name="Models" expanded="True" />
             </Node>
-            <Node name="SupportMediaXF.iOS" expanded="True">
+            <Node name="SupportMediaXF.Droid" expanded="True">
               <Node name="Packages" expanded="True" />
+              <Node name="SupportMediaExtended" expanded="True">
+                <Node name="Camera" expanded="True" />
+                <Node name="GalleryImageAdapter.cs" selected="True" />
+              </Node>
+            </Node>
+            <Node name="SupportMediaXF.iOS" expanded="True">
               <Node name="SupportMediaExtended" expanded="True" />
-              <Node name="SupportCameraController.cs" selected="True" />
             </Node>
           </Node>
         </State>
       </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
-      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.DemoAPP.SupportMediaXFDemo.Android PreferredExecutionTarget="Android.pixel_2_pie_9_0_-_api_28" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

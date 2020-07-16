@@ -38,7 +38,7 @@ namespace SupportMediaXF.Droid.SupportMediaExtended
         //private GalleryDirectoryAdapter galleryDirectoryAdapter;
 
         private Android.Widget.Button bttDone;
-        private ImageButton bttBack;
+        private Android.Widget.ImageButton bttBack;
 
         const int REQUEST_PERMISSIONS_LIBRARY = 100;
         const int REQUEST_CAMERA_CAPTURE = 102;
@@ -438,6 +438,11 @@ namespace SupportMediaXF.Droid.SupportMediaExtended
             {
                 Log.Error("", ex.StackTrace);
             }
+        }
+
+        public void IF_ImageSelected(int positionDirectory, int positionImage, ImageSource imageSource)
+        {
+            throw new NotImplementedException();
         }
     }
 }

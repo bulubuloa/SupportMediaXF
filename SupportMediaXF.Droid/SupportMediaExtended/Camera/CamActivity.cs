@@ -26,7 +26,7 @@ namespace SupportMediaXF.Droid.SupportMediaExtended.Camera
     [Activity(Label = "CamActivity", ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
     public class CamActivity : Activity, TextureView.ISurfaceTextureListener
     {
-        private ImageButton bttCapture, bttBack, bttSwitch, bttFlash;
+        private Android.Widget.ImageButton bttCapture, bttBack, bttSwitch, bttFlash;
         private Android.Widget.ProgressBar progressBar;
 
         private static readonly SparseIntArray ORIENTATIONS = new SparseIntArray();
@@ -208,10 +208,10 @@ namespace SupportMediaXF.Droid.SupportMediaExtended.Camera
 
 
             autoFitTextureView = FindViewById<AutoFitTextureView>(Resource.Id.CameraTexture);
-            bttBack = FindViewById<ImageButton>(Resource.Id.bttBack);
-            bttFlash = FindViewById<ImageButton>(Resource.Id.bttFlash);
-            bttSwitch = FindViewById<ImageButton>(Resource.Id.bttSwitchCamera);
-            bttCapture = FindViewById<ImageButton>(Resource.Id.bttCapture);
+            bttBack = FindViewById<Android.Widget.ImageButton>(Resource.Id.bttBack);
+            bttFlash = FindViewById<Android.Widget.ImageButton>(Resource.Id.bttFlash);
+            bttSwitch = FindViewById<Android.Widget.ImageButton>(Resource.Id.bttSwitchCamera);
+            bttCapture = FindViewById<Android.Widget.ImageButton>(Resource.Id.bttCapture);
             progressBar = FindViewById<Android.Widget.ProgressBar>(Resource.Id.progressBar_cyclic);
 
             bttBack.Click += (object sender, EventArgs e) => {

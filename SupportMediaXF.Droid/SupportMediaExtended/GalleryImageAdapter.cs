@@ -63,7 +63,7 @@ namespace SupportMediaXF.Droid.SupportMediaExtended
                 viewHolder.cover = convertView.FindViewById<LinearLayout>(Resource.Id.cover);
 
                 viewHolder.buttonCheckbox.Click += (object sender, EventArgs e) => {
-                    IGalleryPickerSelected.IF_ImageSelected(Position, position, null, null);
+                    IGalleryPickerSelected.IF_ImageSelected(Position, position, null);
                 };
                 viewHolder.buttonClick.Click += (object sender, EventArgs e) => {
                     IGalleryPickerSelected.IF_CameraSelected(position);
