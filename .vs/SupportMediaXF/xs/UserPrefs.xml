@@ -1,19 +1,28 @@
 ﻿<Properties StartupConfiguration="{4C1E50F8-36D6-4435-B270-CBB7AF05139C}|Default">
   <MonoDevelop.Ide.ItemProperties.DemoAPP.SupportMediaXFDemo.iOS Xamarin.HotReload.XFormsNugetUpgradeInfoBar.SupportMediaXFDemo.iOS.HideInfoBar="True" automaticSigning="False" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.0DF4B49D-24DC-4BD0-9731-88A5DABAE6C3" Xamarin.HotReload.WrongLinkerErrorInfoBar.SupportMediaXFDemo.iOS.HideInfoBar="True" />
   <MonoDevelop.Ide.ItemProperties.SupportMediaXF.Droid AndroidDesignerPreferredDevice="Nexus 4" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="SupportMediaXF.Droid/SupportMediaExtended/GalleryImageAdapter.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SupportMediaXFDemo/MainPageViewModel.cs">
     <Files>
-      <File FileName="SupportMediaXF.Droid/SupportMediaExtended/ISupportMediaExtended.cs" Line="60" Column="62" />
-      <File FileName="SupportMediaXF.Droid/SupportMediaExtended/Camera/CamActivity.cs" Line="153" Column="14" />
-      <File FileName="SupportMediaXF.iOS/SupportMediaExtended/ISupportMediaExtended.cs" Line="58" Column="34" NotebookId="1" />
-      <File FileName="SupportMediaXF.Droid/SupportMediaExtended/GalleryPickerActivity.cs" Line="56" Column="1" NotebookId="1" />
-      <File FileName="SupportMediaXF.Droid/SupportMediaExtended/GalleryImageAdapter.cs" Line="66" Column="86" NotebookId="1" />
+      <File FileName="SupportMediaXF.Droid/SupportMediaExtended/ISupportMediaExtended.cs" Line="15" Column="1" />
+      <File FileName="SupportMediaXF.iOS/SupportCameraController.cs" />
+      <File FileName="SupportMediaXF.iOS/Models/PhotoSetNative.cs" />
+      <File FileName="SupportMediaXFDemo/MainPageViewModel.cs" Line="25" Column="14" />
+      <File FileName="SupportMediaXF.iOS/SupportMediaExtended/ISupportMediaExtended.cs" Line="279" Column="24" NotebookId="1" />
+      <File FileName="SupportMediaXF.Droid/SupportMediaExtended/GalleryPickerActivity.cs" NotebookId="1" />
+      <File FileName="SupportMediaXF.Droid/SupportMediaExtended/GalleryImageAdapter.cs" NotebookId="1" />
+      <File FileName="SupportMediaXF.Droid/SupportMediaExtended/Camera/CamActivity.cs" NotebookId="1" />
+      <File FileName="SupportMediaXF.Droid/SupportMediaExtended/PhotoSetNative.cs" NotebookId="1" />
+      <File FileName="SupportMediaXF.Droid/Resources/layout/cam_activity.axml" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SupportMediaXF" expanded="True">
             <Node name="DemoAPP" expanded="True">
+              <Node name="SupportMediaXFDemo" expanded="True">
+                <Node name="MainPageViewModel.cs" selected="True" />
+              </Node>
+              <Node name="SupportMediaXFDemo.Android" expanded="True" />
               <Node name="SupportMediaXFDemo.iOS" expanded="True">
                 <Node name="Properties" expanded="True" />
                 <Node name="Resources" expanded="True" />
@@ -26,13 +35,15 @@
               <Node name="Models" expanded="True" />
             </Node>
             <Node name="SupportMediaXF.Droid" expanded="True">
-              <Node name="Packages" expanded="True" />
+              <Node name="Resources" expanded="True">
+                <Node name="layout" expanded="True" />
+              </Node>
               <Node name="SupportMediaExtended" expanded="True">
                 <Node name="Camera" expanded="True" />
-                <Node name="GalleryImageAdapter.cs" selected="True" />
               </Node>
             </Node>
             <Node name="SupportMediaXF.iOS" expanded="True">
+              <Node name="Models" expanded="True" />
               <Node name="SupportMediaExtended" expanded="True" />
             </Node>
           </Node>

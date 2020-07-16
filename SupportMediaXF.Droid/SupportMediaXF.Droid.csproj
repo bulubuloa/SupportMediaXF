@@ -141,6 +141,8 @@
     <Compile Include="SupportMediaExtended\Camera\CameraStateListener.cs" />
     <Compile Include="SupportMediaExtended\Camera\ImageAvailableListener.cs" />
     <Compile Include="SupportMediaExtended\Camera\CamActivity.cs" />
+    <Compile Include="SupportMediaExtended\PhotoSetNative.cs" />
+    <Compile Include="SupportMediaExtended\FileHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

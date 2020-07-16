@@ -26,7 +26,12 @@ namespace SupportMediaXF.Droid.SupportMediaExtended.Camera
     [Activity(Label = "CamActivity", ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
     public class CamActivity : Activity, TextureView.ISurfaceTextureListener
     {
-        private Android.Widget.ImageButton bttCapture, bttBack, bttSwitch, bttFlash;
+        public static CamActivity Instance;
+        public static event Action<PhotoSetNative> OnPicked;
+        public static SyncPhotoOptions SyncPhotoOptions { set; get; }
+
+        private Android.Widget.Button bttCapture;
+        private Android.Widget.ImageButton bttBack, bttSwitch, bttFlash;
         private Android.Widget.ProgressBar progressBar;
 
         private static readonly SparseIntArray ORIENTATIONS = new SparseIntArray();
@@ -151,13 +156,34 @@ namespace SupportMediaXF.Droid.SupportMediaExtended.Camera
             }
             catch (System.IO.IOException ex)
             {
-
+                
             }
         }
-        private void FinishTakePhoto()
+        private void FinishTakePhoto(byte[] rawPhoto)
         {
             try
             {
+                var item = new SupportImageXF()
+                {
+                    OriginalPath = CurrentPhotoPath
+                };
+                item.ImageSourceXF = ImageSource.FromStream(() => new MemoryStream(rawPhoto));
+
+                //var bitmap = item.OriginalPath.GetOriginalBitmapFromPath(SyncPhotoOptions);
+                //using (var streamBitmap = new MemoryStream())
+                //{
+                //    bitmap.Compress(Bitmap.CompressFormat.Jpeg, 80, streamBitmap);
+                //    item.ImageSourceXF = ImageSource.FromStream(() => new MemoryStream(rawPhoto));
+                //    bitmap.Recycle();
+                //}
+
+                var result = new PhotoSetNative();
+                result.galleryImageXF = item;
+
+                OnPicked?.Invoke(result);
+                //Finish();
+
+                return;
                 WriteToFile();
 
                 Task.Delay(100).ContinueWith((arg) => {
@@ -211,7 +237,7 @@ namespace SupportMediaXF.Droid.SupportMediaExtended.Camera
             bttBack = FindViewById<Android.Widget.ImageButton>(Resource.Id.bttBack);
             bttFlash = FindViewById<Android.Widget.ImageButton>(Resource.Id.bttFlash);
             bttSwitch = FindViewById<Android.Widget.ImageButton>(Resource.Id.bttSwitchCamera);
-            bttCapture = FindViewById<Android.Widget.ImageButton>(Resource.Id.bttCapture);
+            bttCapture = FindViewById<Android.Widget.Button>(Resource.Id.bttCapture);
             progressBar = FindViewById<Android.Widget.ProgressBar>(Resource.Id.progressBar_cyclic);
 
             bttBack.Click += (object sender, EventArgs e) => {
@@ -257,6 +283,10 @@ namespace SupportMediaXF.Droid.SupportMediaExtended.Camera
             };
 
             bttCapture.Click += (object sender, EventArgs e) => {
+                Finish();
+                return;
+                Android.Util.Log.Debug("bttCapture", "bttCapture");
+
                 if (IsBusy)
                     return;
                 else
@@ -273,6 +303,8 @@ namespace SupportMediaXF.Droid.SupportMediaExtended.Camera
             ORIENTATIONS.Append((int)SurfaceOrientation.Rotation270, 180);
 
             OpenCamera(false);
+
+            Instance = this;
         }
 
         private void SwitchCamera()
@@ -472,7 +504,7 @@ namespace SupportMediaXF.Droid.SupportMediaExtended.Camera
 
         public void TakePhoto()
         {
-
+            Android.Util.Log.Debug("TakePhoto", "TakePhoto");
             if (cameraDevice != null)
             {
                 try
@@ -517,7 +549,7 @@ namespace SupportMediaXF.Droid.SupportMediaExtended.Camera
                     readerListener.Photo += (sender, e) =>
                     {
                         Photo = e;
-                        FinishTakePhoto();
+                        FinishTakePhoto(e.ToArray());
                     };
 
                     // We create a Handler since we want to handle the resulting JPEG in a background thread

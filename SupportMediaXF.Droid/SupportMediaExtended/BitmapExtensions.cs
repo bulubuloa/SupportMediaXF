@@ -19,13 +19,16 @@ namespace SupportMediaXF.Droid.SupportMediaExtended
             int outWidth = options.OutWidth;
             int inSampleSize = 1;
 
-            if (outHeight > syncPhotoOptions.Height || outWidth > syncPhotoOptions.Width)
+            if(syncPhotoOptions != null)
             {
-                inSampleSize = outWidth < outHeight ? outHeight / syncPhotoOptions.Height : outWidth / syncPhotoOptions.Width;
+                if (outHeight > syncPhotoOptions.Height || outWidth > syncPhotoOptions.Width)
+                {
+                    inSampleSize = outWidth < outHeight ? outHeight / syncPhotoOptions.Height : outWidth / syncPhotoOptions.Width;
+                }
+                options.InSampleSize = inSampleSize;
             }
-
             // Now we will load the image and have BitmapFactory resize it for us.
-            options.InSampleSize = inSampleSize;
+           
             options.InJustDecodeBounds = false;
             
             Bitmap resizedBitmap = BitmapFactory.DecodeFile(fileName, options);

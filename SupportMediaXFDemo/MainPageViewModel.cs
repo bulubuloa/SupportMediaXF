@@ -20,14 +20,19 @@ namespace SupportMediaXFDemo
             {
                 var option = new SyncPhotoOptions();
                 var result = await xx.IF_OpenCamera(option);
-                ImageItems.Add(result);
-                var result2 = await xx.IF_WriteStreamToFile(result, option);
-
-                var xxyy = new SupportImageXF()
+                if(result != null)
                 {
-                    ImageSourceXF = ImageSource.FromFile(result2.ProcessFilePath)
-                };
-                ImageItems.Add(xxyy);
+                    ImageItems.Add(result);
+                    var result2 = await xx.IF_WriteStreamToFile(result, option);
+                }
+
+                
+
+                //var xxyy = new SupportImageXF()
+                //{
+                //    ImageSourceXF = ImageSource.FromFile(result2.ProcessFilePath)
+                //};
+                //ImageItems.Add(xxyy);
             }
         }
 

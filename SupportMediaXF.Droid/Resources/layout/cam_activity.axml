@@ -9,13 +9,26 @@
                                                                          android:layout_alignParentTop="true"
                                                                          android:layout_height="wrap_content"
                                                                          android:layout_width="wrap_content" />
-    <ImageButton android:background="@android:color/transparent"
-                 android:id="@+id/bttCapture"
+
+    <RelativeLayout
+         android:layout_marginBottom="20dp"
                  android:layout_alignParentBottom="true"
                  android:layout_centerHorizontal="true"
-                 android:layout_height="60dp"
-                 android:layout_width="60dp"
-                 android:src="@drawable/capture_camera" />
+        android:layout_width="80dp"
+        android:layout_height="80dp">
+        <ImageView
+            android:src="@drawable/capture_camera"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
+
+            android:id="@+id/bttCapture"
+            android:background="@android:color/holo_red_dark"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        </RelativeLayout>>
+
      <ProgressBar
         android:layout_weight="1"
         android:id="@+id/progressBar_cyclic"
@@ -32,6 +45,7 @@
                     android:padding="7dp">
 
         <ImageButton android:background="@android:color/transparent"
+            
                      android:layout_centerVertical="true"
                      android:id="@+id/bttBack"
                      android:layout_height="40dp"
